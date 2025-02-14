@@ -3,6 +3,7 @@ import { db } from "../utils/database";
 import { generateThumbnail } from "../utils/fileUtils";
 import path from "node:path";
 import fs from "node:fs";
+import type User from "../types/user";
 
 // Upload a file
 export const uploadFile = async (
@@ -22,13 +23,16 @@ export const uploadFile = async (
 	const fileSize = file.size;
 
 	try {
+		const { uuid } =
+			(await db.collection<User>("users").findOne({ username })) ?? {};
+
 		await db.collection("files").insertOne({
 			originalFilename: file.originalname,
 			uuidFilename: file.filename,
 			shortUrl,
 			fileSize,
-			uploadedBy: username,
-			uploadDate: new Date(),
+			uploadedBy: uuid,
+			uploadDate: new Date().toISOString(),
 		});
 
 		res.json({
@@ -38,6 +42,7 @@ export const uploadFile = async (
 			deleteUrl: `https://tinnyterr-cdn.uk/delete/${shortUrl}/`,
 		});
 	} catch (error) {
+		if (res.headersSent) return;
 		res.status(500).json({ message: "Error saving file metadata" });
 		return;
 	}
@@ -60,6 +65,7 @@ export const getFileMetadata = async (
 		res.json(fileRecord);
 		return;
 	} catch (error) {
+		if (res.headersSent) return;
 		res
 			.status(500)
 			.json({ message: "Server error while fetching file metadata" });
@@ -119,6 +125,7 @@ export const getThumbnail = async (
 		else throw new Error("Did not get string for path");
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	} catch (error: any) {
+		if (res.headersSent) return;
 		res.status(500).json({ message: "Error generating thumbnail" });
 		console.log(`------ ERROR -----\n${error.stack}`);
 		res.end();
