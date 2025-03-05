@@ -142,3 +142,7 @@ www
 uploads
 tmp
 thumbnails
+
+dist
+*.map
+*.js

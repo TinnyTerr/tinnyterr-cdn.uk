@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { NextFunction, Request, Response } from "express";
-import type { User } from "~types";
+import type { User } from "../types";
 import { db } from "../utils/database";
+import { APIError, Errors, ErrorsHttpResponse } from "../utils/errors";
 import { generateThumbnail } from "../utils/fileUtils";
-import { errors } from "../utils/errors";
 
 // Upload a file
 export const uploadFile = async (
@@ -148,7 +148,7 @@ export const deleteFile = async (
 		const fileRecord = await db.collection("files").findOne({ shortUrl });
 
 		if (!fileRecord) {
-			next(errors.notFound(shortUrl!))
+			next(new APIError(Errors.FileNotFound, ErrorsHttpResponse.FileNotFound, shortUrl, `File ${shortUrl} could not be found `));
 			return;
 		}
 
