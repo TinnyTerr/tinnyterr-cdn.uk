@@ -1,14 +1,19 @@
 import { randomInt } from "node:crypto";
 import { type Request, type Response, Router } from "express";
-import { APIError, Errors, ErrorsHttpResponse } from "../utils/errors";
-import { quotes } from "../utils/quotes";
+import { APIError, Errors, ErrorsHttpResponse } from "../../utils/errors";
+import { quotes } from "../../utils/quotes";
 
 const router = Router();
 
 router.get("/", (_req: Request, res: Response) => {
 	// Ensure there are quotes available
 	if (quotes.length === 0) {
-		throw new APIError(Errors.ServiceUnavailable, ErrorsHttpResponse.ServiceUnavailable, null, "No quotes found");
+		throw new APIError(
+			Errors.ServiceUnavailable,
+			ErrorsHttpResponse.ServiceUnavailable,
+			null,
+			"No quotes found",
+		);
 	}
 
 	// Get a random quote using randomInt
@@ -21,7 +26,12 @@ router.get("/", (_req: Request, res: Response) => {
 router.get("/*", (_req: Request, res: Response) => {
 	// Ensure there are quotes available
 	if (quotes.length === 0) {
-		throw new APIError(Errors.ServiceUnavailable, ErrorsHttpResponse.ServiceUnavailable, null, "No quotes found");
+		throw new APIError(
+			Errors.ServiceUnavailable,
+			ErrorsHttpResponse.ServiceUnavailable,
+			null,
+			"No quotes found",
+		);
 	}
 
 	// Get a random quote using randomInt

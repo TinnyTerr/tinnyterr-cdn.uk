@@ -4,11 +4,11 @@ import {
 	type Response,
 	type NextFunction,
 } from "express";
-import { authenticate } from "../middlewares/authenticate";
+import { authenticate } from "../../middlewares/authenticate";
 import { randomUUID } from "node:crypto";
-import { db } from "../utils/database";
-import type { Text } from "../types";
-import { APIError, Errors, ErrorsHttpResponse } from "../utils/errors";
+import { db } from "../../utils/database";
+import type { Text } from "../../types";
+import { APIError, Errors, ErrorsHttpResponse } from "../../utils/errors";
 
 const router = Router();
 
@@ -53,6 +53,7 @@ router.get(
 			// @ts-ignore
 			let text = await db
 				.collection<Text>("texts")
+				// @ts-ignore
 				.findOne({ uploader: req.username });
 
 			if (text === null || text === undefined) {
@@ -67,6 +68,7 @@ router.get(
 				// @ts-ignore
 				text = await db
 					.collection<Text>("texts")
+					// @ts-ignore
 					.findOne({ uploader: req.username });
 			}
 

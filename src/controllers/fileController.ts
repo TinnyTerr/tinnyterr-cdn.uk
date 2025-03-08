@@ -57,6 +57,7 @@ export const getFileMetadata = async (
 	res: Response,
 ): Promise<void> => {
 	const { shortUrl } = req.params;
+
 	try {
 		const fileRecord = await db.collection("files").findOne({ shortUrl });
 		if (!fileRecord) {
@@ -148,7 +149,14 @@ export const deleteFile = async (
 		const fileRecord = await db.collection("files").findOne({ shortUrl });
 
 		if (!fileRecord) {
-			next(new APIError(Errors.FileNotFound, ErrorsHttpResponse.FileNotFound, shortUrl, `File ${shortUrl} could not be found `));
+			next(
+				new APIError(
+					Errors.FileNotFound,
+					ErrorsHttpResponse.FileNotFound,
+					shortUrl,
+					`File ${shortUrl} could not be found `,
+				),
+			);
 			return;
 		}
 

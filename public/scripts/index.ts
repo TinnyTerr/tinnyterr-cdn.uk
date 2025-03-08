@@ -278,13 +278,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 				loginBox.insertAdjacentElement("beforeend", errorMsg);
 			} else {
-				const result = await res.json();
-				console.log("Login successful:", result);
+				const result = await res.text();
 
 				try {
-					localStorage.setItem("token", result.token);
+					localStorage.setItem("token", result);
 				} catch {
-					token = result.token;
+					token = result;
 				}
 
 				loggedIn(loginBox);
