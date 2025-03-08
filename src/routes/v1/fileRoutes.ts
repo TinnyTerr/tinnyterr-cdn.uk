@@ -6,8 +6,8 @@ import {
 	getFileMetadata,
 	getThumbnail,
 	uploadFile,
-} from "../../controllers/fileController";
-import { authenticate } from "../../middlewares/authenticate";
+} from "../../controllers/v1/fileController";
+import { authenticate } from "../../middlewares/v1/authenticate";
 
 const router = Router();
 

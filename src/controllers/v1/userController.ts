@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 
-import { db } from "../utils/database";
+import { db } from "../../utils/database";
 
 export const getUserUploads = async (
 	req: Request,

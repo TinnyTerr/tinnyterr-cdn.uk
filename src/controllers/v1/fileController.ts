@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { NextFunction, Request, Response } from "express";
-import type { User } from "../types";
-import { db } from "../utils/database";
-import { APIError, Errors, ErrorsHttpResponse } from "../utils/errors";
-import { generateThumbnail } from "../utils/fileUtils";
+import type { User } from "../../types/v1";
+import { db } from "../../utils/database";
+import { APIError, Errors, ErrorsHttpResponse } from "../../utils/errors";
+import { generateThumbnail } from "../../utils/fileUtils";
 
 // Upload a file
 export const uploadFile = async (
