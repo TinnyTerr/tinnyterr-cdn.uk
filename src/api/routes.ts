@@ -1,10 +1,17 @@
+/**
+ * For information, this file is to manage all the
+ * different routes, per api. The routes.ts within
+ * the root (src), is to manage the entire server,
+ * including frontend and cdn
+ */
+
 import { Router } from "express";
 
-import v1authRoutes from "./v1/authRoutes";
-import v1fileRoutes from "./v1/fileRoutes";
-import v1quoteRoutes from "./v1/quotesRoutes";
-import v1textRoutes from "./v1/textRoutes";
-import v1userRoutes from "./v1/userRoutes";
+import v1authRoutes from "./v1/routes/authRoutes";
+import v1fileRoutes from "./v1/routes/fileRoutes";
+import v1quoteRoutes from "./v1/routes/quotesRoutes";
+import v1textRoutes from "./v1/routes/textRoutes";
+import v1userRoutes from "./v1/routes/userRoutes";
 
 const router = Router();
 

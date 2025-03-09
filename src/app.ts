@@ -5,9 +5,9 @@ import express, {
 	type Response,
 } from "express";
 import morgan from "morgan";
-import apiRoutes from "./routes";
-import { Errors, isAPIError } from "./utils/errors";
-import { colorizer } from "./utils/logger";
+import apiRoutes from "./api/routes";
+import { Errors, isAPIError } from "./api/common/utils/errors";
+import { colorizer } from "./api/common/utils/logger";
 
 const app = express();
 

@@ -4,11 +4,10 @@ import {
 	type Response,
 	type NextFunction,
 } from "express";
-import { authenticate } from "../../middlewares/v1/authenticate";
+import { authenticate } from "../middleware/authenticate";
 import { randomUUID } from "node:crypto";
-import { db } from "../../utils/database";
-import type { Text } from "../../types/v1";
-import { APIError, Errors, ErrorsHttpResponse } from "../../utils/errors";
+import { db } from "../../common/utils/database";
+import type { Text } from "../types";
 
 const router = Router();
 

@@ -1,7 +1,11 @@
 import { randomInt } from "node:crypto";
 import { type Request, type Response, Router } from "express";
-import { APIError, Errors, ErrorsHttpResponse } from "../../utils/errors";
-import { quotes } from "../../utils/quotes";
+import {
+	APIError,
+	Errors,
+	ErrorsHttpResponse,
+} from "../../common/utils/errors";
+import { quotes } from "../../common/utils/quotes";
 
 const router = Router();
 

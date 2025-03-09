@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { db } from "../../utils/database";
+import { db } from "../../common/utils/database";
 
 export const authenticate = async (
 	req: Request,
