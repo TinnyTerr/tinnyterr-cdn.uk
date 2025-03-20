@@ -3,7 +3,7 @@ import app from "./app";
 
 dotenv.config();
 
-const port = process.env.PORT as string;
+const port = process.env.port as string;
 
 app.all("/", (_req, res) => {
 	res.sendStatus(204);

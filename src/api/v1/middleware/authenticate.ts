@@ -21,7 +21,7 @@ export const authenticate = async (
 	try {
 		const decoded = jwt.verify(
 			token as string,
-			process.env.JWT_SECRET || "secretkey",
+			process.env.JWTsecret || "secretkey",
 		) as unknown as { uuid: string };
 		const user = await db.collection("users").findOne({ uuid: decoded.uuid });
 		if (!user) {
