@@ -28,16 +28,22 @@
 		"baseUrl": "./src", /* Specify the base directory to resolve non-relative module names. */
 		"paths": {
 			"@v1/*": [
-				"./controllers/v1/*",
-				"./middlewares/v1/*",
-				"./routes/v1/*",
-				"./types/v1/index.ts"
+				"./api/v1/controllers/*",
+				"./api/v1/middlewares/*",
+				"./api/v1/routes/*",
+				"./api/v1/types/index.ts"
 			],
 			"@v1/types": [
 				"./types/v1/index.ts"
 			],
+			"@v2/*": [
+				"./api/v2/controllers/*",
+				"./api/v2/middlewares/*",
+				"./api/v2/routes/*",
+				"./api/v2/types/*"
+			],
 			"@utils/*": [
-				"./utils/*"
+				"./api/common/utils"
 			]
 		}, /* Specify a set of entries that re-map imports to additional lookup locations. */
 		// "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
