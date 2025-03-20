@@ -5,9 +5,9 @@ export enum Errors {
 	InvalidFileType = 3,
 	UploadFailed = 4,
 	PermissionDenied = 5,
-	QuotaExceeded = 6,
-	NetworkError = 7,
-	UnauthorizedAccess = 8,
+	PermissionDeniedAuthorised = 6,
+	QuotaExceeded = 7,
+	NetworkError = 8,
 	ServiceUnavailable = 9,
 	PackageError = 10,
 }
@@ -18,15 +18,15 @@ export enum ErrorsHttpResponse {
 	FileTooLarge = 422,
 	InvalidFileType = 415,
 	UploadFailed = 500,
-	PermissionDenied = 403,
+	PermissionDenied = 401,
+	PermissionDeniedAuthorised = 403,
 	QuotaExceeded = 400,
 	NetworkError = 500,
-	UnauthorizedAccess = 401,
 	ServiceUnavailable = 503,
 	PackageError = 424,
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: 
+// biome-ignore lint/suspicious/noExplicitAny:
 export const isAPIError = (err: any): err is APIError => {
 	if (err.code) return true;
 	return false;
@@ -36,8 +36,7 @@ export class APIError extends Error {
 	constructor(
 		public code: Errors,
 		public readonly httpCode: ErrorsHttpResponse,
-		// biome-ignore lint/suspicious/noExplicitAny: literally any data into a string
-		public data: any,
+		public data: unknown,
 		message: string,
 	) {
 		super(message);
@@ -48,7 +47,6 @@ export class APIError extends Error {
 				: typeof data === "object"
 					? JSON.stringify(data)
 					: String(data);
-
 	}
 	sanitaryOutput: string;
 
@@ -79,9 +77,9 @@ export class APIError extends Error {
 			data: string;
 		} => this.code === Errors.NetworkError,
 		unauthorizedAccess: (): this is APIError & {
-			code: Errors.UnauthorizedAccess;
+			code: Errors.PermissionDeniedAuthorised;
 			data: string;
-		} => this.code === Errors.UnauthorizedAccess,
+		} => this.code === Errors.PermissionDeniedAuthorised,
 		serviceUnavailable: (): this is APIError & {
 			code: Errors.ServiceUnavailable;
 			data: string;
