@@ -37,13 +37,7 @@
 				"./api/v1/types/*"
 			],
 			"@v2/*": [
-				"./api/v2/controllers/*",
-				"./api/v2/middlewares/*",
-				"./api/v2/routes/*",
-				"./api/v2/types/*"
-			],
-			"@v2/types/*": [
-				"./api/v2/types/*"
+				"./api/v2/*",
 			],
 			"@utils/*": [
 				"./api/common/utils"

@@ -1,5 +1,10 @@
 import express, { Router } from "express";
-import { registerCallback, login, register, loginCallback } from "@v2/auth";
+import {
+	registerCallback,
+	login,
+	register,
+	loginCallback,
+} from "@v2/controllers/auth";
 
 const routes = Router();
 
