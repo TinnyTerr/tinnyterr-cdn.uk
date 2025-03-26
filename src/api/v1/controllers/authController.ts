@@ -22,8 +22,7 @@ export const login = async (req: Request, res: Response) => {
 		{ uuid: user.uuid },
 		process.env.JWTsecret || "secretkey",
 		{
-			expiresIn: 86400, // 24 hours
-
+			// No time limit until we implement a special media token for uploading
 			algorithm: "HS512",
 		},
 	);
